@@ -1,0 +1,197 @@
+
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Results Management System</title>
+    <meta name="description" content="University Academic Portal - Results Management System">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- University Header -->
+    <header class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>University of GV </h1>
+            <p> Results Management System</p>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="main-container">
+        <!-- Login Form Section -->
+        <section id="loginSection" class="section active">
+            <div class="login-container">
+                <!-- Left Side - University Picture -->
+                <div class="login-image-side">
+                    <img src="./university.jpeg" alt="university" class="login-side-image">
+                    <div class="image-overlay">
+                        <div class="overlay-content">
+                            <h3>Welcome to Academic Excellence</h3>
+                            <p>Your gateway to academic achievements and results</p>
+                            <div class="university-stats">
+                                <div class="stat-item">
+                                    <i class="fas fa-users"></i>
+                                    <span>10,000+ Students</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    <span>8 Faculties</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-trophy"></i>
+                                    <span>Excellence in Education</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Side - Login Form -->
+                <div class="login-form-side">
+                    <div class="card-header">
+                        <div class="icon-container">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h2>Student Results Portal</h2>
+                        <p>Enter your details to view academic results</p>
+                    </div>
+                
+                <form id="loginForm" class="login-form">
+                    <div class="form-group">
+                        <label for="indexNumber">Index Number</label>
+                        <input type="text" id="indexNumber" placeholder="Enter your index number" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="year">Academic Year</label>
+                        <select id="year" required>
+                            <option value="">Select academic year</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                            
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="faculty">Faculty</label>
+                        <select id="faculty" required>
+                            <option value="">Select your faculty</option>
+                            <option value="Faculty of Engineering">Faculty of Engineering</option>
+                            <option value="Faculty of Science">Faculty of Science</option>
+                            <option value="Faculty of Medicine">Faculty of Medicine</option>
+                            <option value="Faculty of Arts">Faculty of Arts</option>
+                            <option value="Faculty of Law">Faculty of Law</option>
+                            <option value="Faculty of Business">Faculty of Business</option>
+                            <option value="Faculty of Education">Faculty of Education</option>
+                            <option value="Faculty of Agriculture">Faculty of Agriculture</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button type="submit" class="btn btn-primary">View Results</button>
+                        <button type="button" class="btn btn-secondary" onclick="clearForm()">Cancel</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="resultsSection" class="section">
+            <div class="section-header">
+                <button class="btn btn-outline" onclick="showLogin()">
+                    <i class="fas fa-arrow-left"></i> Back to Login
+                </button>
+                <button class="btn btn-gold" onclick="showRankings()">
+                    View Top Students
+                </button>
+            </div>
+
+            <!-- Student Info -->
+            <div class="info-card">
+                <div class="info-header">
+                    <div>
+                        <h3>Academic Results</h3>
+                        <p id="studentInfo">Academic Year • Faculty</p>
+                    </div>
+                    <div class="index-display">
+                        <span>Index Number</span>
+                        <strong id="displayIndex"></strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance Overview -->
+            <div class="performance-card">
+                <h3><i class="fas fa-trophy"></i> Overall Performance</h3>
+                <div class="performance-grid">
+                    <div class="performance-item primary">
+                        <div class="performance-value" id="overallGPA">3.68</div>
+                        <div class="performance-label">Overall GPA</div>
+                    </div>
+                    <div class="performance-item gold">
+                        <div class="performance-value" id="totalCredits">15</div>
+                        <div class="performance-label">Total Credits</div>
+                    </div>
+                    <div class="performance-item success">
+                        <div class="performance-value" id="totalSubjects">5</div>
+                        <div class="performance-label">Subjects</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Table -->
+            <div class="results-card">
+                <div class="results-header">
+                    <div>
+                        <h3>Subject Results</h3>
+                    </div>
+                    <button class="btn btn-download" onclick="downloadResults()">
+                        <i class="fas fa-download"></i> Download Results
+                    </button>
+                </div>
+                <p>Detailed breakdown of your academic performance</p>
+                <div id="resultsContainer" class="results-list">
+                    <!-- Results will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Rankings Section -->
+        <section id="rankingsSection" class="section">
+            <div class="section-header">
+                <button class="btn btn-outline" onclick="showResults()">
+                    <i class="fas fa-arrow-left"></i> Back to Results
+                </button>
+                <div class="header-info">
+                    <h2>Top Academic Performers</h2>
+                    <p>Academic Year 2023 Rankings</p>
+                </div>
+            </div>
+
+            <!-- Faculty Statistics -->
+            <div class="stats-card">
+                <h3><i class="fas fa-trophy"></i> Faculty Performance Distribution</h3>
+                <p>Number of top students by faculty</p>
+                <div id="facultyStats" class="stats-grid">
+                    <!-- Faculty stats will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Top Students List -->
+            <div id="topStudentsList" class="rankings-list">
+                <!-- Top students will be populated by JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
